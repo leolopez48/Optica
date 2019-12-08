@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %} Flartec | Actualizar Consulta {% endblock %}</title>
 </head>
 <body>
@@ -13,6 +15,9 @@
         <div align="center">
             <form method="post">
                 {% csrf_token %}
+                                    <label>Fecha: </label>
+                    <input type="Text" name="fechaconsulta" readonly="readonly" placeholder={{form.fechaconsulta}}
+                    <ul></ul>
                 <ul>{{ form.numconsulta }}</ul>
                 <ul>Paciente: {{ form.codpaciente }}</ul>
                 <ul>Doctor: {{ form.coddoctor }} </ul>
@@ -20,6 +25,8 @@
                 <ul>Enfermedad: {{ form.enfermedad }}</ul>
                 <ul>Grad. Izquierda: {{ form.gradizq }}</ul>
                 <ul>Grad. Derecha: {{ form.gradder }}</ul>
+                <h4 align="center">Receta asignada/Comentarios </h4>
+                <ul>{{ form.receta }}</ul>
                 <button class="btn btn-primary" type="submit">Actualizar</button>
             </form>
         </div>

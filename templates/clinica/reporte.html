@@ -1,0 +1,60 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% block title %}Flartec | Reporte de consulta{% endblock %}
+</head>
+<style type="text/css">
+	.table{
+		height: 20px;
+		padding-left: 2px;
+		text-align: center;
+	}
+</style>
+<body>
+	<br>
+	<img style="padding-top: 10%; width: 20%" src="{% static 'images/icon.png' %}"></img>
+	<br>
+	<h2 align="center">Datos Generales</h2>
+            <table class="table table-stripped table-dark table-hover" style="width: 99%; border: #000000 1px solid;">
+        <thead>
+        <tr style="">
+
+            <td width="5%" class="table">#</td>
+            <td width="20%" class="table">Paciente</td>
+            <td width="15%" class="table">Doctor</td>
+            <td width="20%" class="table">Fecha</td>
+            <td width="20%" class="table">Diagnostico</td>
+            <td width="20%" class="table">Graduaciones</td>
+        </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>{{ consulta.numconsulta }}</td>
+                    <td>{{ consulta.codpaciente.nompaciente}} {{ consulta.codpaciente.apelpaciente }}</td>
+                    <td>{{ consulta.coddoctor.nomdoctor }} {{ consulta.coddoctor.apeldoctor }}</td>
+                    <td>{{ consulta.fechaconsulta }}</td>
+                    <td>{{ consulta.enfermedad }}</td>
+                    <td>{% if consulta.gradizq == 8 %}0.0, {% else %}{% if consulta.gradizq == 7 %}0.25, {% else %}{% if consulta.gradizq == 6 %}0.50, {% else %}{% if consulta.gradizq == 5 %}0.75, {% else %}{% if consulta.gradizq == 4 %}1.0, {% else %}{% if consulta.gradizq == 3 %}1.25, {% else %}{% if consulta.gradizq == 2 %}1.50, {% else %}{% if consulta.gradizq == 1 %}1.75, {% else %}{% if consulta.gradizq == 0 %}2.0, {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% if consulta.gradder == 8 %}0.0{% else %}{% if consulta.gradder == 7 %}0.25{% else %}{% if consulta.gradder == 6 %}0.50{% else %}{% if consulta.gradder == 5 %}0.75{% else %}{% if consulta.gradder == 4 %}1.0{% else %}{% if consulta.gradder == 3 %}1.25{% else %}{% if consulta.gradder == 2 %}1.50{% else %}{% if consulta.gradder == 1 %}1.75{% else %}{% if consulta.gradder == 0 %}2.0{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}</td>
+                </tr>
+        </tbody>
+        </tbody>
+        </table>
+        <br>
+        <h2 style="text-align: center">Receta medica/Comentarios:</h2>
+        <ul style="text-align: center">{{consulta.receta}}</ul>
+        <br>
+        <br>
+        <div style=" padding-left: 1.5%; padding-bottom: 1.5%; text-align: center">
+        <div style=" ;background-color: #FFFFFF; text-align: center;-webkit-border-radius: 5px 10px; width: 98.5%">
+        <br>Copyright &#169 2019 FLARTEC | Todos los Derechos Reservados.
+        <br>ITCA
+        <br>
+        <br>
+        </div>
+        </div>
+</body>
+</html>

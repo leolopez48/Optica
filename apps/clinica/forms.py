@@ -1,7 +1,8 @@
 from django import forms
 from apps.clinica.models import *
 from apps.clinica.choices import *
-
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class PacienteForm(forms.ModelForm):
 
@@ -34,13 +35,15 @@ class ConsultaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ConsultaForm, self).__init__(*args, **kwargs)
+        #Sirve para modificar el tamaño del campo
+        self.fields['receta'].widget.attrs.update(size = 25)
         instance = getattr(self, 'instance', None)
         if instance and instance.numconsulta:
             self.fields['fechaconsulta'].widget.attrs['readonly'] = True
 
     class Meta:
         model = ClinicaConsulta
-
+        
         fields = [
             'numconsulta',
             'codpaciente',
@@ -48,7 +51,8 @@ class ConsultaForm(forms.ModelForm):
             'fechaconsulta',
             'enfermedad',
             'gradizq',
-            'gradder'
+            'gradder',
+            'receta'
         ]
 
     labels = {
@@ -58,15 +62,17 @@ class ConsultaForm(forms.ModelForm):
         'fechaConsulta': 'Fecha Consulta',
         'enfermedad': 'Enfermedad',
         'gradder': 'Derecha',
-        'gradizq': 'Izquierda'
+        'gradizq': 'Izquierda',
+        'receta': 'Receta',
     }
 
     widgets = {
         'numconsulta': forms.TextInput(attrs={'class': 'form-control'}),  # Field name made lowercase.
-        'codpaciente': forms.Select(attrs={'class': 'form-control'}),  # Field name made lowercase.
+        'codpaciente': forms.Select(attrs={'class': 'browser-default custom-select'}),  # Field name made lowercase.
         'coddoctor': forms.Select(attrs={'class': 'form-control'}),  # Field name made lowercase.
         'fechaconsulta': forms.TextInput({'class': 'form-control'}),  # Field name made lowercase.  # Field name made lowercase.
         'enfermedad': forms.ChoiceField(choices=ENFERMEDAD_CHOICES, widget=forms.Select()),  # Field name made lowercase.
         'gradizq': forms.ChoiceField(choices=GRAD_CHOICES, widget=forms.Select()),
         'gradder': forms.ChoiceField(choices=GRAD_CHOICES, widget=forms.Select()),  # Field name made lowercase.
+        'receta': forms.CharField(widget=forms.TextInput())
     }

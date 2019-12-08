@@ -1,5 +1,5 @@
 """
-WSGI config for flartec project.
+WSGI config for opticaUES project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

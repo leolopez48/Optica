@@ -1,0 +1,145 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% block title %}Flartec | Consultas{% endblock %}
+</head>
+    {% block navbar%}
+        <div class="bs-docs-section clearfix">
+            <div class="col-lg-12">
+                <div class="bs-component">
+                 <nav class="navbar navbar-default">
+                     <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="{% url 'login' %}">Opticas FLARTEC</a>
+                            <a class="navbar-brand" href="{% url 'usuarios' %}">Buscar</a>
+                    </div>
+                </nav>
+            </div>
+              </div>
+      </div>
+    {% endblock %}
+        {% block content %}
+<br>
+        <style type="text/css">
+#container {
+    min-width: 310px;
+    max-width: 800px;
+    height: 400px;
+    margin: 0 auto
+}
+        </style>
+    </head>
+    <body>
+<script src="{% static 'code/highcharts.js'%}"></script>
+<script src="{% static 'code/modules/series-label.js'%}"></script>
+<script src="{% static 'code/modules/exporting.js'%}"></script>
+<script src="{% static 'code/modules/export-data.js'%}"></script>
+
+        <br>
+        <h2 align="center">Gráfico</h2>
+        <br>
+<div id="container"></div>
+
+<br>
+
+        <script type="text/javascript">
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Variación de la enfermedad ocular con respecto al tiempo'
+    },
+
+    subtitle: {
+        text: 'Flartec'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Graduación'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 1
+        }
+    },
+
+    series: [{
+        name: 'Izquierda',
+        data: [{% for consulta in consultas %}{% if consulta.gradizq == 8 %}0.0,{% else %}{% if consulta.gradizq == 7 %}0.25,{% else %}{% if consulta.gradizq == 6 %}0.50,{% else %}{% if consulta.gradizq == 5 %}0.75,{% else %}{% if consulta.gradizq == 4 %}1.0,{% else %}{% if consulta.gradizq == 3 %}1.25,{% else %}{% if consulta.gradizq == 2 %}1.50,{% else %}{% if consulta.gradizq == 1 %}1.75,{% else %}{% if consulta.gradizq == 0 %}2.0,{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endfor %}]
+    }, {
+        name: 'Derecha',
+        data: [{% for consulta in consultas %}{% if consulta.gradder == 8 %}0.0,{% else %}{% if consulta.gradder == 7 %}0.25,{% else %}{% if consulta.gradder == 6 %}0.50,{% else %}{% if consulta.gradder == 5 %}0.75,{% else %}{% if consulta.gradder == 4 %}1.0,{% else %}{% if consulta.gradder == 3 %}1.25,{% else %}{% if consulta.gradder == 2 %}1.50,{% else %}{% if consulta.gradder == 1 %}1.75,{% else %}{% if consulta.gradder == 0 %}2.0,{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endfor %}]
+    }, ],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+        </script>
+    </body>
+
+    <div style="padding-left: 1%">
+        <table>
+        <div style="padding-left: 1%">
+            <table class="table table-stripped table-light table-hover" style=" padding-left: 10%;width: 99%;">
+        <thead>
+        <tr style="text-align: center;">
+
+            <td style="width: 2%">#</td>
+            <td>Paciente</td>
+            <td>Doctor</td>
+            <td>Fecha</td>
+            <td>Diagnostico</td>
+            <td>Graduaciones(I, D)</td>
+        </tr>
+        </thead>
+        <tbody>
+            {% if consultas  %}
+                {% for consulta in consultas %}
+                            <tr>
+                                <td width="1%">{{ consulta.numconsulta }}</td>
+                                <td width="15%">{{ consulta.codpaciente.nompaciente}} {{ consulta.codpaciente.apelpaciente }}</td>
+                                <td width="12%">{{ consulta.coddoctor.nomdoctor }} {{ consulta.coddoctor.apeldoctor }}</td>
+                                <td width="15%">{{ consulta.fechaconsulta }}</td>
+                                <td width="8%">{{ consulta.enfermedad }}</td>
+                                <td style="width: 14%">{% if consulta.gradizq == 8 %}0.0, {% else %}{% if consulta.gradizq == 7 %}0.25, {% else %}{% if consulta.gradizq == 6 %}0.50, {% else %}{% if consulta.gradizq == 5 %}0.75, {% else %}{% if consulta.gradizq == 4 %}1.0, {% else %}{% if consulta.gradizq == 3 %}1.25, {% else %}{% if consulta.gradizq == 2 %}1.50, {% else %}{% if consulta.gradizq == 1 %}1.75, {% else %}{% if consulta.gradizq == 0 %}2.0, {% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% if consulta.gradder == 8 %}0.0{% else %}{% if consulta.gradder == 7 %}0.25{% else %}{% if consulta.gradder == 6 %}0.50{% else %}{% if consulta.gradder == 5 %}0.75{% else %}{% if consulta.gradder == 4 %}1.0{% else %}{% if consulta.gradder == 3 %}1.25{% else %}{% if consulta.gradder == 2 %}1.50{% else %}{% if consulta.gradder == 1 %}1.75{% else %}{% if consulta.gradder == 0 %}2.0{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}</td>
+                            </tr>
+                {% endfor %}
+            {% else %}
+                <h2>No hay registros de Consultas</h2>
+            {% endif %}
+        </tbody>
+        </tbody>
+        </div>
+    </table>
+    </div>
+    {% endblock %}
+</body>
+</html>

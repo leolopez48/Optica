@@ -141,7 +141,8 @@ class ClinicaConsulta(models.Model):
     enfermedad = models.CharField(choices=ENFERMEDAD_CHOICES, default=3, db_column='ENFERMEDAD', max_length=100)
     gradizq = models.IntegerField(choices=GRAD_CHOICES, default=8, db_column='GRADIZQ')  # Field name made lowercase.
     gradder = models.IntegerField(choices=GRAD_CHOICES, default=8, db_column='GRADDER')  # Field name made lowercase.
-
+    receta = models.CharField(db_column='RECETA', null=True, blank=True, max_length=200)
+    
     class Meta:
         managed = True
         db_table = 'clinica_consulta'

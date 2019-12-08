@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{% block title %} Title {% endblock %}</title>
 </head width="198px">
 <!--{#<link rel="stylesheet" href="<//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js">﻿#}-->
@@ -18,7 +20,7 @@
                  <nav class="navbar navbar-default">
                      <div class="container-fluid">
                         <div class="navbar-header">
-                          <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+                            <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
                             <a class="navbar-brand" href="{% url 'seleccionar' %}">Pacientes</a>
                             <a class="navbar-brand" href="{% url 'consulta' %}">Consultas</a>
                             <a class="navbar-brand" href="{% url 'prueba' %}">Pruebas</a>
@@ -48,7 +50,7 @@
         </div>
     {% endblock %}
     <script src= "{% static 'js/sb-admin-2.js' %}"></script>
-<script src= "{% static 'js/bootstrap.js' %}"></script>
-<script src= "{% static 'js/bootstrap-theme.min.css' %}"></script>
+<script src= "{% static 'js/sb-admin-2.min.js' %}"></script>
+<script src= "{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

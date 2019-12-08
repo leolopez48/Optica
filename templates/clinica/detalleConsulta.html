@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
     {% block title %}Flartec | Consultas{% endblock %}
 </head>
 <table>
@@ -11,6 +13,8 @@
         <br>
         <h2 align="center">Detalle de Consulta </h2>
         <div style="text-align: center">
+            <a class="navbar-brand" href="{% url 'reporte' consulta.numconsulta %}"><img style="padding-top: 10%" src="{% static 'images/print.png' %}"></img></a>
+            <ul></ul>
             <h3>Datos Generales</h3>
             <ul>Fecha Consulta: {{ consulta.fechaconsulta }}</ul>
         </div>
@@ -27,6 +31,12 @@
             <ul>Doctor #: {{ consulta.coddoctor.coddoctor}}</ul>
             <ul>Doctor: {{ consulta.coddoctor.nomdoctor }} {{ consulta.coddoctor.apeldoctor }}</ul>
             <ul>Fecha de Nacimiento: {{ consulta.coddoctor.fechanac }}</ul>
+            <h3 align="center" style="padding-top: 3%">Receta asignada/Comentarios </h3>
+            {% if consulta.receta == null %}
+                <ul>No se asigno ninguna receta en esta consulta </ul>
+                {% else %}
+                {{ consulta.receta}}
+            {% endif %}
         </div>
         <div style="padding-left:75px;display: inline-table; text-align: center">
             <h3 style="padding-left: 30px;">Diagnostico</h3>
@@ -104,7 +114,8 @@
         </div>
         </div>
         <div style="text-align: center">
-        <a class=" btn btn-primary" href="{% url 'consulta' %}">Regresar</a></div>
+            <br>
+        <a  class=" btn btn-primary" href="{% url 'consulta' %}">Regresar</a></div>
     {% endblock %} 
 </body>
 </html>

@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
     {% block title %}Flartec | Seleccionar pacientes{% endblock %}
 </head>
 <table>
@@ -16,27 +18,46 @@
         </div>
         <br>
         <h2 align="center">Seleccionar Paciente</h2>
-        <br>
-        <div style="padding-left: 1%; padding-right:1%;">
-            <table class="table table-stripped table-light table-hover">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 my-3 search" >
+                    <form method="get">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" name="buscar" placeholder="Buscar paciente..." class="form-control">
+
+                                <span class="input-group-list">
+                                    <i class="icon icon-search"></i>
+                                    <button type="submit" class="btn btn-success">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 1%">
+            <table class="table table-stripped table-light table-hover" style ="width: 99%">
         <thead>
         <tr>
-            <!--<td>#</td>-->
+            <td>#</td>
             <td>Nombre</td>
             <td>Fecha</td>
-            <td>Acciones</td>
+            <td style =";width: 30%;">Acciones</td>
         </tr>
         </thead>
         <tbody>
+
             {% if pacientes %}
             {% for paciente in pacientes %}
                 <tr>
-                    <!--<td>{{ paciente.codpaciente }}</td>-->
+                    <td style ="width: 2%;">{{ paciente.codpaciente }}</td>
                     <td>{{ paciente.nompaciente }} {{ paciente.apelpaciente }}</td>
                     <td>{{ paciente.fechanac }}</td>
-                    <td style="width:25%">
+                    <td>
                         <a class="btn btn-primary" href={% url 'actualizar' paciente.codpaciente %}>Actualizar </a>
                         <a class="btn btn-danger" href={% url 'eliminar' paciente.codpaciente %}>Eliminar</a>
+                        <a class="btn btn-info" href={% url 'grafico' paciente.codpaciente %}>Gráfico</a>
                     </td>
                 </tr>
             {% endfor %}

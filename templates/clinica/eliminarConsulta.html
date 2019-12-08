@@ -4,7 +4,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block title %}Flartec | Eliminar consulta{% endblock %}
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% block title %}Flartec| Eliminar consulta{% endblock %}
 </head>
 <body>
     {% block content %}
@@ -20,6 +22,12 @@
             <ul>Enfermedad: {{ consulta.enfermedad }}</ul>
                 <ul>Grad. Izquierda: {{ consulta.gradizq }}</ul>
                 <ul>Grad. Derecha: {{ consulta.gradder }}</ul>
+            <h4 align="center">Receta asignada/Comentarios </h4>
+            {% if consulta.receta == null %}
+                <ul>No se asigno ninguna receta en esta consulta </ul>
+                {% else %}
+                {{ consulta.receta}}
+            {% endif %}
             <button class="btn btn-danger" type="submit" >Si, eliminar</button>
             <a class="btn btn-info"  href="{% url 'consulta' %}">Cancelar</a>
         </form>

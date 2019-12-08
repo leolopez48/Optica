@@ -1,0 +1,78 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+    {% block title %}Flartec | Buscar Pacientes {% endblock %}
+</head>
+<body>
+    {% block navbar%}
+        <div class="bs-docs-section clearfix">
+            <div class="col-lg-12">
+                <div class="bs-component">
+                 <nav class="navbar navbar-default">
+                     <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a class="navbar-brand" href="{% url 'login' %}">Opticas FLARTEC</a>
+                    </div>
+                </nav>
+            </div>
+              </div>
+      </div>
+    {% endblock %}
+    {% block content %}
+        <br>
+        <h2 align="center">Buscar Paciente</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 my-3 search" >
+                    <form method="get">
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" name="buscar" placeholder="Buscar paciente..." class="form-control">
+
+                                <span class="input-group-list">
+                                    <i class="icon icon-search"></i>
+                                    <button type="submit" class="btn btn-success">Buscar</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div style="padding-left: 1%">
+            <table class="table table-stripped table-light table-hover" style ="width: 99%">
+        <thead>
+        <tr>
+            <td>#</td>
+            <td>Nombre</td>
+            <td>Fecha</td>
+            <td style =";width: 30%;">Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+
+            {% if pacientes %}
+            {% for paciente in pacientes %}
+                <tr>
+                    <td style ="width: 2%;">{{ paciente.codpaciente }}</td>
+                    <td>{{ paciente.nompaciente }} {{ paciente.apelpaciente }}</td>
+                    <td>{{ paciente.fechanac }}</td>
+                    <td>
+                        <a class="btn btn-info" href={% url 'graficoUsuarios' paciente.codpaciente %}>Consultas</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <h2>No se ha buscado o encontrado al paciente</h2>
+            {% endif %}
+        </tbody>
+        </table>
+        </div>
+    {% endblock %}
+</body>
+</html>
