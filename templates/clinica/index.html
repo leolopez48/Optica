@@ -1,0 +1,17 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+{% block title %}Bienvenido a opticas FLARTEC{% endblock %}
+{% block navbar %}{% endblock %}
+{% block content %}
+	<div align="center" style="padding-top: 5%">
+			<div align="center" style="width: 400px; height: 400px; background: #FFF; -webkit-border-radius: 5px 10px;"">
+		<img style="padding-top: 10%" src="{% static 'images/icon.png' %}"></img>
+		<h2>Opticas FLARTEC</h2>
+  		<form style="padding-top:10%" method="post">
+    		{% csrf_token %}
+    		{{ form.as_p }}
+    		<button class="btn btn-primary" type="submit">Iniciar Sesión</button>
+  		</form>
+	</div>
+	</div>
+{% endblock %}

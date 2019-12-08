@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+{% block title %}Flartec | Simulacion astigmatismo{% endblock %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simulaciones</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+</head>
+<body>
+{% block content %}
+    <br>
+    <h2 align="center">Simulacion astigmatismo</h2>
+    <br>
+    <div class="container" style="padding-left: 25%">
+        <div class="row">
+            <div class="col-xs-3"></div>
+            <div class="col-xs-6" style="position: relative;">
+                <img src="{% static 'images/Castigmatismo.png' %}" alt="" id="fondo">
+                <div style="position: absolute;top: 0%">
+                    <img src="{% static 'images/Sastigmatismo.png' %}" alt="" id="tope">
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div align="center"><a class="btn btn-primary" href="{% url 'consulta' %}">Regresar</a></div>
+    <script src="{% static 'js/gif.js' %}"></script>
+    {% endblock %}
+</body>
+</html>

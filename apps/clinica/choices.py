@@ -1,0 +1,2 @@
+ENFERMEDAD_CHOICES = (('Astigmatismo', 'Astigmatismo'), ('Miopia', 'Miopia'), ('Ninguna', 'Ninguna'))
+GRAD_CHOICES = ((0,2), (1, 1.75), (2, 1.50), (3, 1.25), (4, 1.00), (5, 0.75), (6, 0.50), (7, 0.25), (8, 0)) 

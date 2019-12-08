@@ -1,0 +1,36 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+{% block title %}Flartec | Inicio{% endblock %}
+    {% block content %}
+    <br>
+        <h2 style="padding-left: 5%">Astigmatismo</h2>
+				<ul style="font-size: 18; width: 96%">
+					El astigmatismo es un problema en la curvatura de la c&oacuternea, que impide el enfoque claro de los objetos cercanos y lejanos. Esto se debe a que la c&oacuternea, en vez de ser redonda, se achata por los polos y aparecen distintos radios de curvatura en cada uno de los ejes principales. Por ello, cuando la luz incide a trav&eacutes de la c&oacuternea, se obtienen im&aacutegenes distorsionadas.
+					<br></br>Existen diversos tipos de astigmatismo:
+					<br>-Astigmatismo simple: aparece en un solo eje.
+					<br>-Astigmatismo compuesto: adem&aacutes de afectar a un eje se asocia a la miop&iacutea o la hipermetrop&iacutea.
+					<br>-Astigmatismo mixto: cuando un eje se enfoca delante de la retina (mi&oacutepico) y otro detr&aacutes de la retina (hipermetr&oacutepico).
+					<br></br>En este proyecto tomaremos como base solo el estudio del Astigmatismo Simple.
+					La luz procedente de los objetos y que entra en el ojo se enfoca en m&aacutes de un punto de la retina. Esto provoca una visi&oacuten borrosa y distorsionada, ya que en los ojos em&eacutetropes (sin graduaci&oacuten) las im&aacutegenes se enfocan en un &uacutenico punto de la retina.
+					<br>Adem&aacutes de la visi&oacuten borrosa a cualquier distancia, puede provocar alguno de estos s&iacutentomas:
+					<br></br>-Dolores de cabeza.
+					<br>-Ojos hinchados y/o enrojecidos.
+					<br>-Fatiga visual que provoca irritaci&oacuten ocular.
+					<br>-El paciente puede entrecerrar los ojos para ver.
+					<br>-Dificultad en la visi&oacuten nocturna.
+				</ul>
+
+        <div id="fenomeno" align="center"><img src="{% static 'images/astigmatismo.png' %}" width="80%"></div>
+        <br>
+        <h2 style="padding-left: 5%">Miopía</h2>
+        				<ul style="font-size: 18;width: 96%; justify-content: middle">
+					La miop&iacutea ocurre en ojos que enfocan las im&aacutegenes delante de la retina en lugar de hacerlo sobre la retina. Esto puede resultar en una visi&oacuten borrosa. Ocurre cuando el globo ocular es demasiado largo y evita que la luz que viene entrando se enfoque directamente sobre la retina. Tambi&eacuten puede ocurrir cuando la c&oacuternea o el cristalino tienen forma anormal.
+					Es un error refractivo, lo que significa que el ojo no refracta la luz adecuadamente para ver las im&aacutegenes con claridad. Cuando existe una miop&iacutea, los objetos cercanos se ven claramente, pero los distantes se ven borrosos.
+					<br></br>Algunos de los signos y s&iacutentomas de la miop&iacutea incluyen:
+					<br>-Dolores de cabeza.
+					<br>-Fatiga visual.
+					<br>-Entrecerrar los ojos para ver.
+					<br>-Dificultad para ver objetos. lejanos, como se&ntildeales en la autopista.
+				</ul>
+        <div  align="center" ><img src="{% static 'images/miopia.png' %}" width="80%"></div>
+    {% endblock %}

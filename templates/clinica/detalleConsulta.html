@@ -1,0 +1,110 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Flartec | Consultas{% endblock %}
+</head>
+<table>
+    {% block content %}
+        <br>
+        <h2 align="center">Detalle de Consulta </h2>
+        <div style="text-align: center">
+            <h3>Datos Generales</h3>
+            <ul>Fecha Consulta: {{ consulta.fechaconsulta }}</ul>
+        </div>
+        <br>
+        <div style="text-align: center">
+            <div style="display: inline-table; text-align: center">
+            <h3 style="padding-left: 30px;">Paciente</h3>
+            <ul>Paciente #: {{ consulta.codpaciente.codpaciente }}</ul>
+            <ul>Paciente: {{ consulta.codpaciente.nompaciente }} {{ consulta.codpaciente.apelpaciente }}</ul>
+            <ul>Fecha: {{ consulta.codpaciente.fechanac }}</ul>
+        </div>
+        <div style="padding-left:75px;display: inline-table; text-align: center">
+            <h3 style="padding-left: 30px;">Doctor</h3>
+            <ul>Doctor #: {{ consulta.coddoctor.coddoctor}}</ul>
+            <ul>Doctor: {{ consulta.coddoctor.nomdoctor }} {{ consulta.coddoctor.apeldoctor }}</ul>
+            <ul>Fecha de Nacimiento: {{ consulta.coddoctor.fechanac }}</ul>
+        </div>
+        <div style="padding-left:75px;display: inline-table; text-align: center">
+            <h3 style="padding-left: 30px;">Diagnostico</h3>
+            <ul>Enfermedad: {{ consulta.enfermedad }}</ul>
+            {% if consulta.gradder == 8 %}
+                <ul>Grad Der: 0.0</ul>
+            {% else %}
+                {% if consulta.gradder == 7 %}
+                    <ul>Graduación derecha: 0.25 </ul>
+                {% else %}
+                    {% if consulta.gradder == 6 %}
+                        <ul>Graduación derecha: 0.50</ul>
+                    {% else %}
+                        {% if consulta.gradder == 5 %}
+                            <ul>Graduación derecha: 0.75</ul>
+                        {% else %}
+                            {% if consulta.gradder == 4 %}
+                                <ul>Graduación derecha: 1.0</ul>
+                            {% else %}
+                                {% if consulta.gradder == 3 %}
+                                    <ul>Graduación derecha: 1.25</ul>
+                                {% else %}
+                                    {% if consulta.gradder == 2 %}
+                                        <ul>Graduación derecha: 1.50</ul>
+                                    {% else %}
+                                        {% if consulta.gradder == 1 %}
+                                            <ul>Graduación derecha: 1.75</ul>
+                                        {% else %}
+                                            {% if consulta.gradder == 0 %}
+                                                <ul>Graduación derecha: 2.0</ul>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+            {% if consulta.gradizq == 8 %}
+                <ul>Graduación Izquierda: 0.0</ul>
+            {% else %}
+                {% if consulta.gradizq == 7 %}
+                    <ul>Graduación Izquierda: 0.25</ul>
+                {% else %}
+                    {% if consulta.gradizq == 6 %}
+                        <ul>Graduación Izquierda: 0.50</ul>
+                    {% else %}
+                        {% if consulta.gradizq == 5 %}
+                            <ul>Graduación Izquierda: 0.75</ul>
+                        {% else %}
+                            {% if consulta.gradizq == 4 %}
+                                <ul>Graduación Izquierda: 1.0</ul>
+                            {% else %}
+                                {% if consulta.gradizq == 3 %}
+                                    <ul>Graduación Izquierda: 1.25</ul>
+                                {% else %}
+                                    {% if consulta.gradizq == 2 %}
+                                        <ul>Graduación Izquierda: 1.50</ul>
+                                    {% else %}
+                                        {% if consulta.gradizq == 1 %}
+                                            <ul>Graduación Izquierda: 1.75</ul>
+                                        {% else %}
+                                            {% if consulta.gradizq == 0 %}
+                                                <ul>Graduación Izquierda: 2.0</ul>
+                                            {% endif %}
+                                        {% endif %}
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+        </div>
+        <div style="text-align: center">
+        <a class=" btn btn-primary" href="{% url 'consulta' %}">Regresar</a></div>
+    {% endblock %} 
+</body>
+</html>

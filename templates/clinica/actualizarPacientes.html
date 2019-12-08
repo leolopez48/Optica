@@ -1,0 +1,26 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Flartec | Inicio{% endblock %}
+</head>
+<body>
+        {% block content %}
+        <h2 align="center">Actualizar Paciente</h2>
+        <br>
+        <div align="center">
+            <form method="post">
+                {% csrf_token %}
+                <ul>{{ form.codpaciente }}</ul>
+                <ul>Nombre: {{ form.nompaciente }}</ul>
+                <ul>Apellidos: {{ form.apelpaciente}}</ul>
+                <ul>Fecha de Nacimiento: {{ form.fechanac }}</ul>
+                <button class="btn btn-primary" type="submit">Actualizar</button>
+            </form>
+        </div>
+    {% endblock %}
+
+</body>
+</html>

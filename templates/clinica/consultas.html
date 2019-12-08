@@ -1,0 +1,62 @@
+
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Flartec | Consultas{% endblock %}
+</head>
+<table>
+    {% block content %}
+        <br>
+        <h2 align="center">Consultas</h2>
+        <br>
+        <div style="padding-left: 1%; padding-right: 1%;">
+            <table class="table table-stripped table-light table-hover" style=" padding-left: 10%;width: 99%;">
+        <thead>
+        <tr>
+
+            <!--<td>#</td>-->
+            <td>Paciente</td>
+            <td>Doctor</td>
+            <td>Fecha</td>
+            <td>Diagnostico</td>
+            <td style=" width: 25%;">Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+            {% if consultas %}
+            {% for consulta in consultas %}
+                <tr>
+                    <!--<td style="width: 2%">{{ consulta.numconsulta }}</td>-->
+                    <td>{{ consulta.codpaciente.nompaciente}} {{ consulta.codpaciente.apelpaciente }}</td>
+                    <td>{{ consulta.coddoctor.nomdoctor }} {{ consulta.coddoctor.apeldoctor }}</td>
+                    <td>{{ consulta.fechaconsulta }}</td>
+                    <td>{{ consulta.enfermedad }}</td>
+                    <td>
+                        <a  class="btn btn-primary" href={% url 'actualizarConsulta' consulta.numconsulta %}>Editar</a>
+                        <a class="btn btn-info" href={% url 'detalle' consulta.numconsulta %}>Detalles</a>
+                        {{ numconsulta.enfermedad}}
+                        {% if consulta.enfermedad == "Miopia" %}
+                        <a  class="btn btn-primary" href={% url 'miopia' %}>Simular</a>
+                        {% else %}
+                        {% if consulta.enfermedad == "Astigmatismo" %}
+                        <a class="btn btn-primary" href={% url 'astigmatismo' %}>Simular</a>
+                        {% else %}
+                        <a class="btn btn-primary" href={% url 'simulacion' %}>Simular</a>
+                        {% endif %}
+                        {% endif %}
+                        <a class="btn btn-danger" href={% url 'eliminarConsulta' consulta.numconsulta %}>Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <h2>No hay registros de Consultas</h2>
+            {% endif %}
+        </tbody>
+        </table>
+        </div>
+    {% endblock %}
+</body>
+</html>

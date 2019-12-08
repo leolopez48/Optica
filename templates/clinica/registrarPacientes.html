@@ -1,0 +1,18 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+{% block title %}Flartec | Pacientes{% endblock %}
+    {% block content %}
+        <h2 align="center">Registrar Paciente</h2>
+        <br>
+        <div align="center">
+            <form method="post">
+                {% csrf_token %}
+                <uL>{{ form.codpaciente }}</uL>
+                <ul>Nombre: {{ form.nompaciente }}</ul>
+                <ul>Apellido: {{ form.apelpaciente }}</ul>
+                <ul>Fecha de Nacimiento: {{ form.fechanac }}</ul>
+                <button class="btn btn-primary" type="submit">Guardar</button>
+            </form>
+        </div>
+
+    {% endblock %}

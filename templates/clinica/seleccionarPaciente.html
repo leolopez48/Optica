@@ -1,0 +1,51 @@
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Flartec | Seleccionar pacientes{% endblock %}
+</head>
+<table>
+    {% block content %}
+        <div align="center">
+        <div STYLE="display: inline;">
+            <ul style="display: inline;">¿Nuevo usuario? </ul>
+            <a class="navbar-brand" href="{% url 'registrar' %}"> Registrar</a>
+        </div>
+        </div>
+        <br>
+        <h2 align="center">Seleccionar Paciente</h2>
+        <br>
+        <div style="padding-left: 1%; padding-right:1%;">
+            <table class="table table-stripped table-light table-hover">
+        <thead>
+        <tr>
+            <!--<td>#</td>-->
+            <td>Nombre</td>
+            <td>Fecha</td>
+            <td>Acciones</td>
+        </tr>
+        </thead>
+        <tbody>
+            {% if pacientes %}
+            {% for paciente in pacientes %}
+                <tr>
+                    <!--<td>{{ paciente.codpaciente }}</td>-->
+                    <td>{{ paciente.nompaciente }} {{ paciente.apelpaciente }}</td>
+                    <td>{{ paciente.fechanac }}</td>
+                    <td style="width:25%">
+                        <a class="btn btn-primary" href={% url 'actualizar' paciente.codpaciente %}>Actualizar </a>
+                        <a class="btn btn-danger" href={% url 'eliminar' paciente.codpaciente %}>Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            {% else %}
+                <h2>No hay registros de Pacientes</h2>
+            {% endif %}
+        </tbody>
+        </table>
+        </div>
+    {% endblock %}
+</body>
+</html>

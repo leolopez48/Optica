@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Flartec | Prueba {% endblock %}</title>
+</head>
+{#<link rel="stylesheet" href="<//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js">﻿#}
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'js/bootstrap-theme.min.css' %}" rel="stylesheet">
+<link href="{% static 'js/bootstrap.js' %}" rel="stylesheet">
+<body>
+    {% block content %}
+        <h1 align="center">Prueba</h1>
+        <h4 style="padding-left: 50px;">Instrucciones de uso:</h4>
+        <h5 style="padding-left: 50px;">1. Posicionarse a 2 metros de la pantalla de la que se está realizando la prueba.
+        <br>2. Realizar la prueba con un ojo, tapando el otro con una oja de papel o con la mano.
+        <br>3. Luego de haberla realizado con un ojo, destapar el otro y realizar la prueba con este mismo.
+        <br>4. Realizar la prueba con ambos ojos destapados.</h5>
+        <br>
+        <br>
+        <div style="padding-left:10%; display:inline;"><img src="{% static 'images/tabla-snelle1.png' %}" width="40%"></div>
+        <div style="padding-left:5%; display:inline-block;">
+{#            {% for  consulta in consulta %}#}
+            <form method="post">
+                {% csrf_token %}
+                <h4>Datos Generales</h4>
+                <ul>{{ form.numconsulta }}</ul>
+                <ul>Fecha : {{ form.fechaconsulta }}</ul>
+                <ul>Doctor: {{ form.coddoctor }}</ul>
+                <ul>Paciente: {{ form.codpaciente }}</ul>
+                <h4>Mediciones</h4>
+                <ul>Izquierda: {{ form.gradizq }}</ul>
+                <ul>Derecha: {{ form.gradder }}</ul>
+                <ul>Enfermedad: {{ form.enfermedad }}</ul>
+
+                <button class="btn btn-primary" type="submit">Realizar</button>
+            </form>
+{#            {% endfor %}#}
+        </div>
+    {% endblock %}
+    <script src= "{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src= "{% static 'js/popper.min.js' %}"></script>
+    <script src= "{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

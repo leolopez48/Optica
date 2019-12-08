@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Flartec | Eliminar consulta{% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div align="center">
+        <form method="post">
+            {%  csrf_token %}
+            <h2 align="center">Eliminar Consulta</h2>
+            <h3>¿Desea eliminar la consulta con los siguientes datos?</h3>
+            <ul>Codigo Consulta: {{ consulta.numconsulta }}</ul>
+            <ul>Paciente: {{ consulta.codpaciente }}</ul>
+            <ul>Doctor: {{ consulta.coddoctor }} </ul>
+            <ul>Fecha de Consulta: {{ consulta.fechaconsulta }}</ul>
+            <ul>Enfermedad: {{ consulta.enfermedad }}</ul>
+                <ul>Grad. Izquierda: {{ consulta.gradizq }}</ul>
+                <ul>Grad. Derecha: {{ consulta.gradder }}</ul>
+            <button class="btn btn-danger" type="submit" >Si, eliminar</button>
+            <a class="btn btn-info"  href="{% url 'consulta' %}">Cancelar</a>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>

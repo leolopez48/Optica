@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'clinica/base.html' %}
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Flartec | Eliminar paciente{% endblock %}
+</head>
+<body>
+    {% block content %}
+    <div align="center">
+        <form method="post">
+            {%  csrf_token %}
+            <h2 align="center">Eliminar Paciente</h2>
+            <h3>¿Desea eliminar al paciente con los siguientes datos?</h3>
+            <ul>Codigo: {{ paciente.codpaciente }}</ul>
+            <ul>Nombre: {{ paciente.nompaciente }}</ul>
+            <ul>Apellidos: {{ paciente.apelpaciente }}</ul>
+            <ul>Fecha: {{ paciente.fechanac }}</ul>
+            <button class="btn btn-danger" type="submit" >Si, eliminar</button>
+            <a class="btn btn-info"  href="{% url 'seleccionar' %}">Cancelar</a>
+        </form>
+    </div>
+    {% endblock %}
+</body>
+</html>
